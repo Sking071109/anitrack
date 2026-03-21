@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniTrack v2.0</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎌 AniTrack v2.0</h1>
+            <p class="subtitle">Mi tracker personal de animes</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Sección de entrada -->
+            <section class="input-section">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="tituloInput" 
+                        placeholder="Ej: Attack on Titan"
+                        class="input-field"
+                    >
+                </div>
+                <div class="input-group">
+                    <input 
+                        type="number" 
+                        id="episodiosInput" 
+                        placeholder="Episodios vistos"
+                        min="0"
+                        class="input-field"
+                    >
+                </div>
+                <div class="input-group">
+                    <input 
+                        type="number" 
+                        id="puntuacionInput" 
+                        placeholder="Puntuación (1-10)"
+                        min="1"
+                        max="10"
+                        class="input-field"
+                    >
+                </div>
+                <div class="input-group">
+                    <select id="generoInput" class="input-field">
+                        <option value="">Selecciona un género</option>
+                        <option value="Acción">Acción</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Comedia">Comedia</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Magia">Magia</option>
+                    </select>
+                </div>
+                <button id="btnAgregar" class="btn-agregar">Agregar Anime</button>
+            </section>
+
+            <!-- Sección de estadísticas -->
+            <section class="stats-section">
+                <div class="stat-card">
+                    <span class="stat-label">Total de Animes</span>
+                    <span class="stat-value" id="totalAnimes">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Total de Episodios</span>
+                    <span class="stat-value" id="totalEpisodios">0</span>
+                </div>
+            </section>
+
+            <!-- Sección de filtro -->
+            <section class="filter-section">
+                <label for="filtroGenero">Filtrar por género:</label>
+                <select id="filtroGenero" class="filter-select">
+                    <option value="">Todos</option>
+                    <option value="Acción">Acción</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Magia">Magia</option>
+                </select>
+            </section>
+
+            <!-- Sección de listado -->
+            <section class="list-section">
+                <h2>Mi Colección</h2>
+                <div id="listaAnimes" class="anime-cards">
+                    <p class="empty-state">Aún no has agregado ningún anime</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
