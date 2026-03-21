@@ -1,102 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AniTrack v2.0</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AniTrack — Mi Lista</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>🎌 AniTrack v2.0</h1>
-            <p class="subtitle">Mi tracker personal de animes</p>
-        </header>
 
-        <main class="main-content">
-            <!-- Sección de entrada -->
-            <section class="input-section">
-                <div class="input-group">
-                    <input 
-                        type="text" 
-                        id="tituloInput" 
-                        placeholder="Ej: Attack on Titan"
-                        class="input-field"
-                    >
-                </div>
-                <div class="input-group">
-                    <input 
-                        type="number" 
-                        id="episodiosInput" 
-                        placeholder="Episodios vistos"
-                        min="0"
-                        class="input-field"
-                    >
-                </div>
-                <div class="input-group">
-                    <input 
-                        type="number" 
-                        id="puntuacionInput" 
-                        placeholder="Puntuación (1-10)"
-                        min="1"
-                        max="10"
-                        class="input-field"
-                    >
-                </div>
-                <div class="input-group">
-                    <select id="generoInput" class="input-field">
-                        <option value="">Selecciona un género</option>
-                        <option value="Acción">Acción</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Aventura">Aventura</option>
-                        <option value="Comedia">Comedia</option>
-                        <option value="Romance">Romance</option>
-                        <option value="Sci-Fi">Sci-Fi</option>
-                        <option value="Thriller">Thriller</option>
-                        <option value="Magia">Magia</option>
-                    </select>
-                </div>
-                <button id="btnAgregar" class="btn-agregar">Agregar Anime</button>
-            </section>
-
-            <!-- Sección de estadísticas -->
-            <section class="stats-section">
-                <div class="stat-card">
-                    <span class="stat-label">Total de Animes</span>
-                    <span class="stat-value" id="totalAnimes">0</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Total de Episodios</span>
-                    <span class="stat-value" id="totalEpisodios">0</span>
-                </div>
-            </section>
-
-            <!-- Sección de filtro -->
-            <section class="filter-section">
-                <label for="filtroGenero">Filtrar por género:</label>
-                <select id="filtroGenero" class="filter-select">
-                    <option value="">Todos</option>
-                    <option value="Acción">Acción</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Aventura">Aventura</option>
-                    <option value="Comedia">Comedia</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Magia">Magia</option>
-                </select>
-            </section>
-
-            <!-- Sección de listado -->
-            <section class="list-section">
-                <h2>Mi Colección</h2>
-                <div id="listaAnimes" class="anime-cards">
-                    <p class="empty-state">Aún no has agregado ningún anime</p>
-                </div>
-            </section>
-        </main>
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="logo-icon">⊿</span>
+        <span class="logo-text">AniTrack</span>
+      </div>
+      <div class="nav-tag">M3L1 · Arrays · v2.0</div>
     </div>
+  </nav>
 
-    <script src="script.js"></script>
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Tu lista personal</p>
+      <h1 class="hero-title">Registra tu <span class="accent">anime</span><br />y lleva el control.</h1>
+      <p class="hero-sub">Agrega títulos, puntúalos y mira cómo crece tu colección.</p>
+    </div>
+    <div class="hero-deco" aria-hidden="true">
+      <div class="deco-circle deco-1"></div>
+      <div class="deco-circle deco-2"></div>
+      <div class="deco-circle deco-3"></div>
+    </div>
+  </header>
+
+  <!-- ── MAIN ── -->
+  <main class="layout">
+
+    <!-- COLUMNA IZQUIERDA: Formulario -->
+    <section class="panel panel--form">
+      <h2 class="panel-title">Agregar título</h2>
+
+      <form id="formAnime" novalidate>
+
+        <div class="field">
+          <label for="titulo">Título del anime</label>
+          <input type="text" id="titulo" placeholder="ej. Fullmetal Alchemist" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label for="genero">Género</label>
+          <select id="genero">
+            <option value="">— Selecciona un género —</option>
+            <option value="Acción">Acción</option>
+            <option value="Aventura">Aventura</option>
+            <option value="Comedia">Comedia</option>
+            <option value="Drama">Drama</option>
+            <option value="Fantasía">Fantasía</option>
+            <option value="Misterio">Misterio</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Slice of Life">Slice of Life</option>
+          </select>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="episodios">Episodios vistos</label>
+            <input type="number" id="episodios" placeholder="ej. 24" min="1" />
+          </div>
+          <div class="field">
+            <label for="puntuacion">Puntuación (1–10)</label>
+            <input type="number" id="puntuacion" placeholder="ej. 9" min="1" max="10" />
+          </div>
+        </div>
+
+        <!-- Mensaje de error/éxito -->
+        <p id="mensajeForm" class="mensaje" aria-live="polite"></p>
+
+        <button type="submit" class="btn-primary">
+          <span>+ Agregar a mi lista</span>
+        </button>
+
+      </form>
+    </section>
+
+    <!-- COLUMNA DERECHA: Lista -->
+    <section class="panel panel--list">
+      <div class="list-header">
+        <h2 class="panel-title">Mi lista</h2>
+
+        <!-- FEATURE 2: Filtro por género -->
+        <div class="filter-container">
+          <label for="filtroGenero" class="filter-label">Filtrar por:</label>
+          <select id="filtroGenero" class="filter-select">
+            <option value="Todos">— Todos los géneros —</option>
+            <option value="Acción">Acción</option>
+            <option value="Aventura">Aventura</option>
+            <option value="Comedia">Comedia</option>
+            <option value="Drama">Drama</option>
+            <option value="Fantasía">Fantasía</option>
+            <option value="Misterio">Misterio</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Slice of Life">Slice of Life</option>
+          </select>
+        </div>
+
+        <!-- BONUS 2: Buscador por título -->
+        <div class="search-container">
+          <input 
+            type="text" 
+            id="searchAnime" 
+            placeholder="🔍 Buscar por título..." 
+            class="search-input"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="stats-row">
+          <span class="stat-pill" id="statTotal">0 títulos</span>
+          <!-- FEATURE 3: Contador de episodios totales -->
+          <span class="stat-pill" id="statEpisodios" style="display:none">0 episodios</span>
+          <!-- Promedio: ya existía -->
+          <span class="stat-pill stat-pill--accent" id="statPromedio" style="display:none"></span>
+        </div>
+        <div class="btn-group">
+          <button id="btnEliminar" class="btn-danger">− Eliminar último</button>
+          <!-- BONUS 3: Botón para ordenar por puntuación -->
+          <button id="sortByScore" class="btn-secondary" title="Ordenar por puntuación (mayor a menor)">⭐ Ordenar</button>
+        </div>
+      </div>
+
+      <!-- Estado vacío -->
+      <div id="estadoVacio" class="empty-state">
+        <p class="empty-icon">( ˘ ³˘)♥</p>
+        <p class="empty-text">Tu lista está vacía.<br />Agrega tu primer anime para empezar.</p>
+      </div>
+
+      <!-- Contenedor de tarjetas -->
+      <div id="listaAnimes" class="anime-grid"></div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>AniTrack v2.0 &mdash; M3L1 · JavaScript Bootcamp · 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
